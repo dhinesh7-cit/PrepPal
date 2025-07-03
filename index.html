@@ -36,8 +36,13 @@
         .content-section {
             display: none;
             min-height: 100vh;
-            padding: 120px 24px 80px 24px;
+            padding: 100px 16px 80px 16px;
             width: 100%;
+        }
+        @media (min-width: 768px) {
+            .content-section {
+                padding: 120px 24px 80px 24px;
+            }
         }
         .content-section.active {
             display: flex; 
@@ -45,6 +50,7 @@
             justify-content: center;
             align-items: center;
         }
+        /* This selector now targets all elements meant for animation */
         .login-element, .home-element, .practice-config-element, .practice-sim-element, .result-element, .ai-interviewer-element, .profile-element {
             opacity: 0;
             transform: translateY(30px);
@@ -77,7 +83,7 @@
     <div id="login-background-container" class="canvas-container"></div>
     <div id="main-background-container" class="canvas-container" style="opacity: 0;"></div>
 
-    <div id="login-screen" class="flex h-screen w-full items-center justify-center fixed top-0 left-0 z-10 opacity-0">
+    <div id="login-screen" class="flex h-screen w-full items-center justify-center fixed top-0 left-0 z-20 opacity-0">
         <div id="login-container" class="w-full max-w-md flex-col items-center justify-center p-8 text-center">
              <div class="login-element w-16 h-16 sm:w-20 sm:h-20 bg-white/10 flex items-center justify-center rounded-full border-2 border-white/20 mb-6 mx-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" class="text-[#FFFFFE] w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
@@ -94,44 +100,53 @@
     <nav id="navbar" class="fixed top-0 left-0 w-full bg-[#16161A]/80 backdrop-blur-md z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <div class="flex items-center">
-                    <a href="#home" class="nav-link flex-shrink-0 flex items-center gap-2">
-                        <svg class="h-8 w-8 text-[#7F5AF0]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
-                        <span class="text-2xl font-bold">PrepPal</span>
-                    </a>
+                <a href="#home" class="nav-link flex-shrink-0 flex items-center gap-2">
+                    <svg class="h-8 w-8 text-[#7F5AF0]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
+                    <span class="text-2xl font-bold">PrepPal</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="#practice" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Practice</a>
+                    <a href="#result" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Result</a>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#home" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="#practice" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Practice</a>
-                        <a href="#result" class="nav-link text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Result</a>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 md:gap-4">
                     <button id="shuffle-btn" class="p-2 rounded-full hover:bg-white/10" title="User as Interviewer Mode">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
                     </button>
                     <a href="#profile" id="profile-link" class="nav-link w-10 h-10 rounded-full bg-gray-500 overflow-hidden block">
                         <img src="https://i.pravatar.cc/40" alt="User Profile">
                     </a>
-                    <button id="logout-btn" class="p-2 rounded-full hover:bg-white/10" title="Logout">
+                    <button id="logout-btn" class="hidden md:block p-2 rounded-full hover:bg-white/10" title="Logout">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                     </button>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700">
+                        <svg id="menu-open-icon" class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        <svg id="menu-close-icon" class="hidden h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
                 </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#practice" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Practice</a>
+                <a href="#result" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Result</a>
+                <a href="#profile" class="nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Profile</a>
+                <a href="#" id="mobile-logout-btn" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Logout</a>
             </div>
         </div>
     </nav>
 
     <div id="main-container" data-scroll-container>
         <section id="home" data-scroll-section class="content-section">
-            <div class="text-center">
-                <h1 class="home-element text-4xl sm:text-5xl font-bold text-[#FFFFFE] mb-4">Your AI-powered Interview Coach</h1>
-                <h2 class="home-element text-2xl sm:text-3xl text-gray-400 mb-8">
+             <div class="text-center">
+                <h1 class="home-element text-4xl sm:text-5xl lg:text-6xl font-bold text-[#FFFFFE] mb-4">Your AI-powered Interview Coach</h1>
+                <h2 class="home-element text-xl sm:text-2xl lg:text-3xl text-gray-400 mb-8">
                     <span>Achieve </span>
                     <div class="word-carousel-container">
-                        <span class="word-carousel-item" style="color: #7F5AF0;">Confidence.</span>
-                        <span class="word-carousel-item" style="color: #7F5AF0;">Precision.</span>
-                        <span class="word-carousel-item" style="color: #7F5AF0;">Feedback.</span>
+                        <span class="word-carousel-item">Confidence.</span>
+                        <span class="word-carousel-item">Precision.</span>
+                        <span class="word-carousel-item">Feedback.</span>
                     </div>
                 </h2>
                 <button id="get-started-btn" class="home-element bg-[#7F5AF0] hover:bg-[#9D86F5] text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg">
@@ -143,31 +158,31 @@
         <section id="practice" data-scroll-section class="content-section">
              <div id="practice-config-container" class="w-full max-w-4xl mx-auto">
                 <div class="text-center mb-12">
-                     <h1 class="practice-config-element text-4xl sm:text-5xl font-bold">Interview Practice</h1>
+                     <h1 class="practice-config-element text-3xl sm:text-4xl lg:text-5xl font-bold">Interview Practice</h1>
                      <p class="practice-config-element text-lg text-gray-400 mt-2">Let's set up your mock interview.</p>
                 </div>
-                <div class="bg-[#242629] p-8 rounded-lg max-w-md mx-auto">
-                    <h2 class="practice-config-element text-2xl font-bold mb-6 text-center">Configuration</h2>
+                <div class="practice-config-element bg-[#242629] p-6 sm:p-8 rounded-lg max-w-md mx-auto">
+                    <h2 class="text-2xl font-bold mb-6 text-center">Configuration</h2>
                     <div class="space-y-6">
                          <div>
-                            <label for="job-role" class="practice-config-element block text-sm font-medium text-gray-300 mb-2">Job Role</label>
-                            <input type="text" name="job-role" id="job-role" class="practice-config-element w-full bg-[#16161A] border border-gray-600 rounded-lg px-4 py-2 focus:ring-[#7F5AF0] focus:border-[#7F5AF0]">
+                            <label for="job-role" class="block text-sm font-medium text-gray-300 mb-2">Job Role</label>
+                            <input type="text" name="job-role" id="job-role" class="w-full bg-[#16161A] border border-gray-600 rounded-lg px-4 py-2 focus:ring-[#7F5AF0] focus:border-[#7F5AF0]">
                         </div>
                          <div>
-                            <label for="company" class="practice-config-element block text-sm font-medium text-gray-300 mb-2">Company (Optional)</label>
-                            <input type="text" name="company" id="company" class="practice-config-element w-full bg-[#16161A] border border-gray-600 rounded-lg px-4 py-2 focus:ring-[#7F5AF0] focus:border-[#7F5AF0]">
+                            <label for="company" class="block text-sm font-medium text-gray-300 mb-2">Company (Optional)</label>
+                            <input type="text" name="company" id="company" class="w-full bg-[#16161A] border border-gray-600 rounded-lg px-4 py-2 focus:ring-[#7F5AF0] focus:border-[#7F5AF0]">
                         </div>
-                         <button id="start-simulation-btn" class="practice-config-element w-full bg-[#7F5AF0] hover:bg-[#9D86F5] text-white font-bold py-3 px-4 rounded-lg transition-all transform hover:scale-105 shadow-lg">Start Simulation</button>
+                         <button id="start-simulation-btn" class="w-full bg-[#7F5AF0] hover:bg-[#9D86F5] text-white font-bold py-3 px-4 rounded-lg transition-all transform hover:scale-105 shadow-lg">Start Simulation</button>
                     </div>
                 </div>
             </div>
 
             <div id="practice-simulation-container" class="w-full max-w-4xl mx-auto" style="display: none;">
                 <div class="text-center mb-12">
-                     <h1 class="practice-sim-element text-4xl sm:text-5xl font-bold">Simulation In Progress...</h1>
+                     <h1 class="practice-sim-element text-3xl sm:text-4xl lg:text-5xl font-bold">Simulation In Progress...</h1>
                 </div>
-                <div class="bg-[#242629] p-8 rounded-lg">
-                    <div class="practice-sim-element flex items-center gap-4 mb-6">
+                <div class="practice-sim-element bg-[#242629] p-6 sm:p-8 rounded-lg">
+                    <div class="flex items-center gap-4 mb-6">
                         <div class="w-16 h-16 rounded-full bg-[#7F5AF0] flex items-center justify-center flex-shrink-0">
                              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                         </div>
@@ -176,21 +191,21 @@
                             <p class="text-md text-gray-400">Your Interviewer</p>
                         </div>
                     </div>
-                    <div class="practice-sim-element mb-6 bg-[#16161A] p-6 rounded-lg min-h-[100px] flex items-center justify-center">
-                        <p class="text-xl text-center text-gray-300">"Tell me about a time you faced a significant challenge at work."</p>
+                    <div class="mb-6 bg-[#16161A] p-6 rounded-lg min-h-[100px] flex items-center justify-center">
+                        <p class="text-lg sm:text-xl text-center text-gray-300">"Tell me about a time you faced a significant challenge at work."</p>
                     </div>
-                    <div class="practice-sim-element mb-6">
+                    <div class="mb-6">
                         <textarea class="w-full bg-[#16161A] border border-gray-600 rounded-lg px-4 py-2 h-32 focus:ring-[#7F5AF0] focus:border-[#7F5AF0]" placeholder="Type your answer here..."></textarea>
                     </div>
-                    <div class="practice-sim-element flex items-center justify-between">
-                         <button class="bg-[#7F5AF0] hover:bg-[#9D86F5] text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg flex items-center gap-2">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                         <button class="w-full sm:w-auto bg-[#7F5AF0] hover:bg-[#9D86F5] text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
                             <span>Use Voice</span>
                         </button>
-                         <button class="bg-gray-200 hover:bg-white text-gray-800 font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg">Submit Answer</button>
+                         <button class="w-full sm:w-auto bg-gray-200 hover:bg-white text-gray-800 font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg">Submit Answer</button>
                     </div>
                 </div>
-                <div class="practice-sim-element mt-8 bg-[#242629] p-8 rounded-lg">
+                <div class="practice-sim-element mt-8 bg-[#242629] p-6 sm:p-8 rounded-lg">
                     <h2 class="text-2xl font-bold mb-4">Instant Feedback</h2>
                     <p class="text-gray-400">Your feedback will appear here after you respond...</p>
                 </div>
@@ -198,29 +213,28 @@
         </section>
         
         <section id="result" data-scroll-section class="content-section">
-            <div class="max-w-5xl mx-auto">
+            <div class="max-w-5xl mx-auto w-full">
                  <div class="text-center mb-12">
-                     <h1 class="result-element text-4xl sm:text-5xl font-bold">Performance Dashboard</h1>
+                     <h1 class="result-element text-3xl sm:text-4xl lg:text-5xl font-bold">Performance Dashboard</h1>
                      <p class="result-element text-lg text-gray-400 mt-2">An overview of your last session.</p>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8">
                     <div class="result-element bg-[#242629] p-6 rounded-lg text-center">
                         <h3 class="text-lg font-medium text-gray-400 mb-2">Confidence Score</h3>
                         <p class="text-5xl font-bold text-[#7F5AF0]">88%</p>
                     </div>
-                     <div class="result-element bg-[#242629] p-6 rounded-lg">
+                     <div class="result-element bg-[#242629] p-6 rounded-lg text-center md:text-left">
                         <h3 class="text-lg font-medium text-gray-400 mb-3 text-center">Skill Areas</h3>
                         <div class="space-y-2">
                             <p class="text-green-400"><strong>Strong:</strong> Technical Knowledge</p>
                             <p class="text-yellow-400"><strong>Needs Improvement:</strong> STAR Method</p>
                         </div>
                     </div>
-                     <div class="result-element bg-[#242629] p-6 rounded-lg">
-                        <h3 class="text-lg font-medium text-gray-400 mb-3 text-center">Replay History</h3>
+                     <div class="result-element bg-[#242629] p-6 rounded-lg flex items-center justify-center">
                         <button class="w-full bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-4 rounded-lg transition">View Past Answers</button>
                     </div>
                 </div>
-                <div class="result-element bg-[#242629] p-8 rounded-lg">
+                <div class="result-element bg-[#242629] p-6 sm:p-8 rounded-lg">
                     <h2 class="text-2xl font-bold mb-6 text-center">Performance Over Time</h2>
                     <div class="h-80">
                          <canvas id="performanceChart"></canvas>
@@ -232,24 +246,24 @@
         <section id="ai-interviewer" data-scroll-section class="content-section">
             <div class="w-full max-w-4xl mx-auto">
                 <div class="text-center mb-12">
-                     <h1 class="ai-interviewer-element text-4xl sm:text-5xl font-bold">You're the Interviewer</h1>
+                     <h1 class="ai-interviewer-element text-3xl sm:text-4xl lg:text-5xl font-bold">You're the Interviewer</h1>
                      <p class="ai-interviewer-element text-lg text-gray-400 mt-2">Ask the AI a question and see how it would respond.</p>
                 </div>
 
-                <div class="bg-[#242629] p-8 rounded-lg">
-                    <div class="ai-interviewer-element mb-6">
+                <div class="ai-interviewer-element bg-[#242629] p-6 sm:p-8 rounded-lg">
+                    <div class="mb-6">
                         <label for="user-question" class="block text-sm font-medium text-gray-300 mb-2">Your Question</label>
                         <textarea id="user-question" class="w-full bg-[#16161A] border border-gray-600 rounded-lg px-4 py-2 h-24 focus:ring-[#7F5AF0] focus:border-[#7F5AF0]" placeholder="e.g., Why should we hire you?"></textarea>
                     </div>
-                    <div class="ai-interviewer-element mb-6">
+                    <div class="mb-6">
                         <label class="block text-sm font-medium text-gray-300 mb-2">AI's Answer</label>
                         <div class="min-h-[120px] bg-[#16161A] p-4 rounded-lg">
                             <p class="text-gray-400">The AI's response will appear here...</p>
                         </div>
                     </div>
-                    <div class="ai-interviewer-element flex items-center justify-between">
-                         <button class="bg-[#7F5AF0] hover:bg-[#9D86F5] text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg">Ask AI</button>
-                         <button id="exit-ai-interviewer-btn" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg">Exit</button>
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                         <button class="w-full sm:w-auto bg-[#7F5AF0] hover:bg-[#9D86F5] text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg">Add Another Question</button>
+                         <button id="exit-ai-interviewer-btn" class="w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg">Exit</button>
                     </div>
                 </div>
             </div>
@@ -258,49 +272,49 @@
         <section id="profile" data-scroll-section class="content-section">
             <div class="w-full max-w-4xl mx-auto">
                 <div class="text-center mb-12">
-                     <h1 class="profile-element text-4xl sm:text-5xl font-bold">Profile & Settings</h1>
+                     <h1 class="profile-element text-3xl sm:text-4xl lg:text-5xl font-bold">Profile & Settings</h1>
                      <p class="profile-element text-lg text-gray-400 mt-2">Customize your interview experience.</p>
                 </div>
 
                 <div class="space-y-10">
-                    <div class="profile-element bg-[#242629] p-8 rounded-lg">
+                    <div class="profile-element bg-[#242629] p-6 sm:p-8 rounded-lg">
                         <h2 class="text-2xl font-bold mb-6">AI Interviewer Tone</h2>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div>
                                 <input type="radio" name="tone" id="tone-friendly" class="hidden setting-card-input" checked>
-                                <label for="tone-friendly" class="setting-card-label block text-center p-6 border-2 border-gray-600 rounded-lg">Friendly</label>
+                                <label for="tone-friendly" class="setting-card-label block text-center p-4 sm:p-6 border-2 border-gray-600 rounded-lg">Friendly</label>
                             </div>
                             <div>
                                 <input type="radio" name="tone" id="tone-neutral" class="hidden setting-card-input">
-                                <label for="tone-neutral" class="setting-card-label block text-center p-6 border-2 border-gray-600 rounded-lg">Neutral</label>
+                                <label for="tone-neutral" class="setting-card-label block text-center p-4 sm:p-6 border-2 border-gray-600 rounded-lg">Neutral</label>
                             </div>
                             <div>
                                 <input type="radio" name="tone" id="tone-strict" class="hidden setting-card-input">
-                                <label for="tone-strict" class="setting-card-label block text-center p-6 border-2 border-gray-600 rounded-lg">Strict</label>
+                                <label for="tone-strict" class="setting-card-label block text-center p-4 sm:p-6 border-2 border-gray-600 rounded-lg">Strict</label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="profile-element bg-[#242629] p-8 rounded-lg">
+                    <div class="profile-element bg-[#242629] p-6 sm:p-8 rounded-lg">
                         <h2 class="text-2xl font-bold mb-6">Difficulty Level</h2>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div>
                                 <input type="radio" name="difficulty" id="difficulty-easy" class="hidden setting-card-input">
-                                <label for="difficulty-easy" class="setting-card-label block text-center p-6 border-2 border-gray-600 rounded-lg">Easy</label>
+                                <label for="difficulty-easy" class="setting-card-label block text-center p-4 sm:p-6 border-2 border-gray-600 rounded-lg">Easy</label>
                             </div>
                             <div>
                                 <input type="radio" name="difficulty" id="difficulty-moderate" class="hidden setting-card-input" checked>
-                                <label for="difficulty-moderate" class="setting-card-label block text-center p-6 border-2 border-gray-600 rounded-lg">Moderate</label>
+                                <label for="difficulty-moderate" class="setting-card-label block text-center p-4 sm:p-6 border-2 border-gray-600 rounded-lg">Moderate</label>
                             </div>
                             <div>
                                 <input type="radio" name="difficulty" id="difficulty-tough" class="hidden setting-card-input">
-                                <label for="difficulty-tough" class="setting-card-label block text-center p-6 border-2 border-gray-600 rounded-lg">Tough</label>
+                                <label for="difficulty-tough" class="setting-card-label block text-center p-4 sm:p-6 border-2 border-gray-600 rounded-lg">Tough</label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="profile-element bg-[#242629] p-8 rounded-lg flex justify-between items-center">
-                        <div>
+                    <div class="profile-element bg-[#242629] p-6 sm:p-8 rounded-lg flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <div class="text-center sm:text-left">
                             <h2 class="text-2xl font-bold">Response Timer</h2>
                             <p class="text-gray-400">Enable a timer for each question.</p>
                         </div>
@@ -313,7 +327,7 @@
                     </div>
 
                     <div class="profile-element text-center">
-                        <button class="bg-[#7F5AF0] hover:bg-[#9D86F5] text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg">Save Settings</button>
+                        <button class="w-full sm:w-auto bg-[#7F5AF0] hover:bg-[#9D86F5] text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg">Save Settings</button>
                     </div>
                 </div>
             </div>
@@ -326,13 +340,154 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        const App = {
+            init() {
+                this.elements = {
+                    loginScreen: document.getElementById('login-screen'),
+                    mainContainer: document.getElementById('main-container'),
+                    navbar: document.getElementById('navbar'),
+                    mobileMenu: document.getElementById('mobile-menu'),
+                    mobileMenuBtn: document.getElementById('mobile-menu-btn'),
+                    menuOpenIcon: document.getElementById('menu-open-icon'),
+                    menuCloseIcon: document.getElementById('menu-close-icon'),
+                    sections: {
+                        home: document.getElementById('home'), practice: document.getElementById('practice'),
+                        result: document.getElementById('result'), 'ai-interviewer': document.getElementById('ai-interviewer'),
+                        profile: document.getElementById('profile')
+                    }
+                };
+                this.backgroundManager.init();
+                this.bindEvents();
+                this.startLoginAnimation();
+            },
+            showSection(sectionId) {
+                const currentSection = document.querySelector('.content-section.active');
+                if (currentSection && currentSection.id === sectionId) return;
 
-            const backgroundManager = {
+                const activateNewSection = (id) => {
+                    const newSection = this.elements.sections[id];
+                    if (!newSection) return;
+                    newSection.classList.add('active');
+                    newSection.style.display = 'flex';
+                    let animClass = `${id}-element`;
+                    if (id === 'practice') {
+                        document.getElementById('practice-config-container').style.display = 'block';
+                        document.getElementById('practice-simulation-container').style.display = 'none';
+                        animClass = 'practice-config-element';
+                    }
+                    if (id === 'result') this.createPerformanceChart();
+                    this.animateElementsIn(animClass);
+                    if (this.locoScroll) { this.locoScroll.update(); this.locoScroll.scrollTo(newSection, { duration: 0 }); }
+                };
+
+                if (currentSection) {
+                    let outClass = `${currentSection.id}-element`;
+                     if (currentSection.id === 'practice') {
+                        outClass = document.getElementById('practice-simulation-container').style.display !== 'none' ? 'practice-sim-element' : 'practice-config-element';
+                    }
+                    this.animateElementsOut(outClass, () => {
+                        currentSection.classList.remove('active');
+                        currentSection.style.display = 'none';
+                        activateNewSection(sectionId);
+                    });
+                } else {
+                    activateNewSection(sectionId);
+                }
+            },
+            handleLoginSuccess() {
+                gsap.timeline()
+                  .to(".login-element", { duration: 0.5, opacity: 0, y: -30, stagger: 0.1, ease: "power3.in" })
+                  .to(this.elements.loginScreen, { opacity: 0, duration: 0.5, onComplete: () => this.elements.loginScreen.style.display = 'none' })
+                  .call(() => {
+                        this.backgroundManager.switchToMain();
+                        document.body.classList.remove('lock-scroll');
+                        this.elements.mainContainer.style.opacity = 1;
+                        this.locoScroll = new LocomotiveScroll({ el: this.elements.mainContainer, smooth: true });
+                  })
+                  .to(this.elements.navbar, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.3")
+                  .call(() => {
+                      this.showSection('home');
+                      this.startWordCarousel();
+                  });
+            },
+            handleLogout() {
+                this.showSection(null);
+                gsap.timeline()
+                  .to(this.elements.navbar, { y: '-100%', opacity: 0, duration: 0.5 })
+                  .call(() => {
+                      if(this.locoScroll) { this.locoScroll.destroy(); this.locoScroll = null; }
+                      this.elements.mainContainer.style.opacity = 0;
+                      document.body.classList.add('lock-scroll');
+                      this.elements.loginScreen.style.display = 'flex';
+                      this.backgroundManager.switchToLogin();
+                  })
+                  .to(this.elements.loginScreen, { opacity: 1, duration: 0.5 })
+                  .call(() => this.startLoginAnimation());
+            },
+            bindEvents() {
+                document.getElementById('google-signin-btn').addEventListener('click', () => this.handleLoginSuccess());
+                document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', e => { 
+                    e.preventDefault(); 
+                    this.showSection(link.getAttribute('href').substring(1));
+                    this.elements.mobileMenu.classList.add('hidden');
+                    this.elements.menuOpenIcon.classList.remove('hidden');
+                    this.elements.menuCloseIcon.classList.add('hidden');
+                }));
+                document.getElementById('shuffle-btn').addEventListener('click', () => this.showSection('ai-interviewer'));
+                document.getElementById('exit-ai-interviewer-btn').addEventListener('click', () => this.showSection('home'));
+                document.getElementById('get-started-btn').addEventListener('click', () => this.showSection('practice'));
+                document.getElementById('logout-btn').addEventListener('click', () => this.handleLogout());
+                document.getElementById('mobile-logout-btn').addEventListener('click', () => this.handleLogout());
+                document.getElementById('start-simulation-btn').addEventListener('click', () => {
+                    this.animateElementsOut('practice-config-element', () => {
+                        document.getElementById('practice-config-container').style.display = 'none';
+                        document.getElementById('practice-simulation-container').style.display = 'block';
+                        this.animateElementsIn('practice-sim-element');
+                        if(this.locoScroll) this.locoScroll.update();
+                    });
+                });
+                this.elements.mobileMenuBtn.addEventListener('click', () => {
+                    this.elements.mobileMenu.classList.toggle('hidden');
+                    this.elements.menuOpenIcon.classList.toggle('hidden');
+                    this.elements.menuCloseIcon.classList.toggle('hidden');
+                });
+            },
+            startLoginAnimation() {
+                gsap.set(".login-element", { opacity: 0, y: 30 });
+                gsap.to(this.elements.loginScreen, {opacity: 1, duration: 0.5, onComplete: () => {
+                    gsap.to(".login-element", { duration: 0.8, opacity: 1, y: 0, stagger: 0.2, ease: "power3.out", delay: 0.2 });
+                }});
+            },
+            animateElementsIn(className) {
+                gsap.fromTo(`.${className}`, { opacity: 0, y: 30 }, { duration: 0.6, opacity: 1, y: 0, stagger: 0.1, ease: 'power3.out', delay: 0.4 });
+            },
+            animateElementsOut(className, onComplete) {
+                gsap.to(`.${className}`, {
+                    opacity: 0, y: -20, duration: 0.4, ease: 'power2.in', stagger: 0.05,
+                    onComplete: onComplete
+                });
+            },
+            startWordCarousel() {
+                const words = gsap.utils.toArray(".word-carousel-item");
+                if(words.length === 0) return;
+                const wordCarouselTl = gsap.timeline({ repeat: -1 });
+                words.forEach((word, i) => {
+                    gsap.set(word, { color: '#7F5AF0' });
+                    wordCarouselTl.fromTo(word, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, i * 2);
+                    wordCarouselTl.to(word, { opacity: 0, y: -20, duration: 0.8, ease: "power3.in" }, (i * 2) + 1.2);
+                });
+            },
+            createPerformanceChart() {
+                const chartCtx = document.getElementById('performanceChart')?.getContext('2d');
+                if(!chartCtx) return;
+                if (this.performanceChart) this.performanceChart.destroy();
+                this.performanceChart = new Chart(chartCtx, {type:'line',data:{labels:['S1','S2','S3','S4','S5','S6'],datasets:[{label:'Confidence',data:[65,72,70,78,85,88],borderColor:'#7F5AF0',backgroundColor:'rgba(127,90,240,0.1)',fill:true,tension:.4}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,max:100,grid:{color:'rgba(255,255,255,0.1)'},ticks:{color:'#94A3B8'}},x:{grid:{color:'rgba(255,255,255,0.1)'},ticks:{color:'#94A3B8'}}},plugins:{legend:{display:false}}}});
+            },
+            backgroundManager: {
                 loginScene: null, mainScene: null, activeScene: null,
                 init() {
-                    this.loginScene = new LoginBackground(document.getElementById('login-background-container'));
-                    this.mainScene = new MainBackground(document.getElementById('main-background-container'));
+                    this.loginScene = new (App.LoginBackground)(document.getElementById('login-background-container'));
+                    this.mainScene = new (App.MainBackground)(document.getElementById('main-background-container'));
                     this.loginScene.start();
                     this.activeScene = 'login';
                 },
@@ -350,9 +505,8 @@
                     gsap.to(this.mainScene.container, { opacity: 0, duration: 1.5, onComplete: () => this.mainScene.stop() });
                     this.activeScene = 'login';
                 }
-            };
-
-            class LoginBackground {
+            },
+            LoginBackground: class {
                 constructor(container) {
                     this.container = container;
                     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -361,46 +515,32 @@
                     this.scene = new THREE.Scene();
                     this.clock = new THREE.Clock();
                     this.camera.position.z = 1;
-                    this.uniforms = { 
-                        u_time: { value: 0 }, 
-                        u_resolution: { value: new THREE.Vector2() },
-                        u_mouse: { value: new THREE.Vector2(0.5, 0.5) }
-                    };
+                    this.uniforms = { u_time: { value: 0 }, u_resolution: { value: new THREE.Vector2() }, u_mouse: { value: new THREE.Vector2(0.5, 0.5) } };
                     this.createMesh();
                     this.onResize();
                     window.addEventListener('resize', () => this.onResize());
                     window.addEventListener('pointermove', e => this.onPointerMove(e));
                 }
                 onPointerMove(event) {
-                    gsap.to(this.uniforms.u_mouse.value, {
-                        x: event.clientX / window.innerWidth,
-                        y: 1.0 - (event.clientY / window.innerHeight),
-                        duration: 0.8,
-                        ease: 'power3.out'
-                    });
+                    gsap.to(this.uniforms.u_mouse.value, { x: event.clientX / window.innerWidth, y: 1.0 - (event.clientY / window.innerHeight), duration: 0.8, ease: 'power3.out' });
                 }
                 createMesh() {
-                    const geometry = new THREE.PlaneGeometry(2, 2);
                     const material = new THREE.ShaderMaterial({
                         uniforms: this.uniforms,
                         fragmentShader: `uniform vec2 u_resolution; uniform float u_time; uniform vec2 u_mouse; void main() { vec2 st = (gl_FragCoord.xy * 2.0 - u_resolution.xy) / min(u_resolution.x, u_resolution.y); vec3 color=vec3(.0); float total_intensity=.0; vec2 dynamic_center = (u_mouse * 2.0 - 1.0) * vec2(u_resolution.x / u_resolution.y, 1.0); float split_amount=smoothstep(0.,1.,(sin(u_time*.4)+1.)/2.); vec2 base_pos1=mix(vec2(0.),vec2(.8,-.6),split_amount)+vec2(sin(u_time*.6+1.),cos(u_time*.4))*.25; vec2 base_pos2=mix(vec2(0.),vec2(-.7,.7),split_amount)+vec2(sin(u_time*.9+2.),cos(u_time*.5+2.))*.3; vec2 base_pos3=mix(vec2(0.),vec2(.1,.2),split_amount)+vec2(sin(u_time*.4+4.),cos(u_time*.7+4.))*.2; total_intensity+=.11/distance(st,dynamic_center+base_pos1); total_intensity+=.13/distance(st,dynamic_center+base_pos2); total_intensity+=.1/distance(st,dynamic_center+base_pos3); color=vec3(.49,.35,.94)*smoothstep(.7,.8,total_intensity); gl_FragColor = vec4(color, 1.0);}`
                     });
-                    this.scene.add(new THREE.Mesh(geometry, material));
+                    this.scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material));
                 }
                 onResize() {
                     this.renderer.setSize(window.innerWidth, window.innerHeight);
                     this.uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight);
                 }
-                animate() {
-                    this.uniforms.u_time.value = this.clock.getElapsedTime();
-                    this.renderer.render(this.scene, this.camera);
-                }
+                animate() { this.uniforms.u_time.value = this.clock.getElapsedTime(); this.renderer.render(this.scene, this.camera); }
                 start() { this.renderer.setAnimationLoop(() => this.animate()); }
                 stop() { this.renderer.setAnimationLoop(null); }
-            }
-
-            class MainBackground {
-                 constructor(container) {
+            },
+            MainBackground: class {
+                constructor(container) {
                     this.container = container;
                     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
                     this.container.appendChild(this.renderer.domElement);
@@ -419,9 +559,7 @@
                 createParticles() {
                     const count = 700;
                     const positions = new Float32Array(count * 3);
-                    for (let i = 0; i < count * 3; i++) {
-                        positions[i] = (Math.random() - 0.5) * 15;
-                    }
+                    for (let i = 0; i < count * 3; i++) { positions[i] = (Math.random() - 0.5) * 15; }
                     const geometry = new THREE.BufferGeometry();
                     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
                     const material = new THREE.PointsMaterial({ size: 0.05, color: 0x7F5AF0, sizeAttenuation: true });
@@ -430,8 +568,10 @@
                 }
                 onPointerMove(event, isUp = false) {
                     if (isUp) { this.targetRotation.x = 0; this.targetRotation.y = 0; return; }
-                    this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-                    this.pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
+                    const x = event.touches ? event.touches[0].clientX : event.clientX;
+                    const y = event.touches ? event.touches[0].clientY : event.clientY;
+                    this.pointer.x = (x / window.innerWidth) * 2 - 1;
+                    this.pointer.y = - (y / window.innerHeight) * 2 + 1;
                     this.targetRotation.y = this.pointer.x * 0.5;
                     this.targetRotation.x = this.pointer.y * 0.5;
                 }
@@ -448,114 +588,9 @@
                 start() { this.renderer.setAnimationLoop(() => this.animate()); }
                 stop() { this.renderer.setAnimationLoop(null); }
             }
-            
-            backgroundManager.init();
+        };
 
-            let locoScroll;
-            let performanceChart;
-            const loginScreen = document.getElementById('login-screen');
-            const sections = {
-                home: document.getElementById('home'), practice: document.getElementById('practice'),
-                result: document.getElementById('result'), 'ai-interviewer': document.getElementById('ai-interviewer'),
-                profile: document.getElementById('profile')
-            };
-            
-            function showSection(sectionId) {
-                const currentSection = document.querySelector('.content-section.active');
-                if (currentSection && currentSection.id === sectionId) return;
-
-                const activateNewSection = (id) => {
-                    const newSection = sections[id];
-                    if (!newSection) return;
-                    newSection.classList.add('active');
-                    newSection.style.display = 'flex';
-                    let animClass = `${id}-element`;
-                    if (id === 'practice') {
-                        document.getElementById('practice-config-container').style.display = 'block';
-                        document.getElementById('practice-simulation-container').style.display = 'none';
-                        animClass = 'practice-config-element';
-                    }
-                    if (id === 'result' && document.getElementById('performanceChart')) { 
-                        if (performanceChart) performanceChart.destroy();
-                        performanceChart = new Chart(document.getElementById('performanceChart').getContext('2d'), {type:'line',data:{labels:['S1','S2','S3','S4','S5','S6'],datasets:[{label:'Confidence',data:[65,72,70,78,85,88],borderColor:'#7F5AF0',backgroundColor:'rgba(127,90,240,0.1)',fill:true,tension:.4}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,max:100,grid:{color:'rgba(255,255,255,0.1)'},ticks:{color:'#94A3B8'}},x:{grid:{color:'rgba(255,255,255,0.1)'},ticks:{color:'#94A3B8'}}},plugins:{legend:{display:false}}}});
-                     }
-                    gsap.fromTo(`.${animClass}`, { opacity: 0, y: 30 }, { duration: 0.6, opacity: 1, y: 0, stagger: 0.1, ease: 'power3.out', delay: 0.4 });
-                    if (locoScroll) { locoScroll.update(); locoScroll.scrollTo(newSection, { duration: 0 }); }
-                };
-
-                if (currentSection) {
-                    let outClass = `${currentSection.id}-element`;
-                    if (currentSection.id === 'practice') {
-                        outClass = document.getElementById('practice-simulation-container').style.display !== 'none' ? 'practice-sim-element' : 'practice-config-element';
-                    }
-                    gsap.to(`.${outClass}`, {
-                        opacity: 0, y: -20, duration: 0.4, ease: 'power2.in', stagger: 0.05,
-                        onComplete: () => {
-                            currentSection.classList.remove('active');
-                            currentSection.style.display = 'none';
-                            activateNewSection(sectionId);
-                        }
-                    });
-                } else {
-                    activateNewSection(sectionId);
-                }
-            }
-
-            gsap.to(loginScreen, {opacity: 1, duration: 0.5, onComplete: () => {
-                gsap.to(".login-element", { duration: 0.8, opacity: 1, y: 0, stagger: 0.2, ease: "power3.out", delay: 0.2 });
-            }});
-            
-            document.getElementById('google-signin-btn').addEventListener('click', () => {
-                gsap.timeline()
-                  .to(".login-element", { duration: 0.5, opacity: 0, y: -30, stagger: 0.1, ease: "power3.in" })
-                  .to('#login-screen', { opacity: 0, duration: 0.5, onComplete: () => loginScreen.style.display = 'none' })
-                  .call(() => {
-                        backgroundManager.switchToMain();
-                        document.body.classList.remove('lock-scroll');
-                        document.getElementById('main-container').style.opacity = 1;
-                        locoScroll = new LocomotiveScroll({ el: document.getElementById('main-container'), smooth: true });
-                  })
-                  .to('#navbar', { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.3")
-                  .call(() => {
-                      showSection('home');
-                      const words = gsap.utils.toArray(".word-carousel-item");
-                      const wordCarouselTl = gsap.timeline({ repeat: -1 });
-                      if(words.length > 0){words.forEach((word,i)=>{wordCarouselTl.fromTo(word,{opacity:0,y:20},{opacity:1,y:0,duration:.8,ease:"power3.out"},i*2);wordCarouselTl.to(word,{opacity:0,y:-20,duration:.8,ease:"power3.in"},i*2+1.2);});}
-                  });
-            });
-
-            document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', e => { e.preventDefault(); showSection(link.getAttribute('href').substring(1)); }));
-            document.getElementById('shuffle-btn').addEventListener('click', () => showSection('ai-interviewer'));
-            document.getElementById('exit-ai-interviewer-btn').addEventListener('click', () => showSection('home'));
-            document.getElementById('get-started-btn').addEventListener('click', () => showSection('practice'));
-            
-            document.getElementById('start-simulation-btn').addEventListener('click', () => {
-                gsap.timeline()
-                  .to('.practice-config-element', { opacity: 0, y: -30, duration: 0.4, ease: 'power2.in', stagger: 0.05 })
-                  .call(() => {
-                      document.getElementById('practice-config-container').style.display = 'none';
-                      document.getElementById('practice-simulation-container').style.display = 'block';
-                      gsap.set(".practice-sim-element", { opacity: 0, y: 30 });
-                      if(locoScroll) locoScroll.update();
-                  })
-                  .fromTo('.practice-sim-element', { opacity: 0, y: 30 }, { duration: 0.6, opacity: 1, y: 0, stagger: 0.1, ease: 'power3.out' });
-            });
-
-            document.getElementById('logout-btn').addEventListener('click', () => {
-                showSection(null);
-                gsap.timeline()
-                  .to('#navbar', { y: '-100%', opacity: 0, duration: 0.5 })
-                  .call(() => {
-                      if(locoScroll) { locoScroll.destroy(); locoScroll = null; }
-                      document.getElementById('main-container').style.opacity = 0;
-                      document.body.classList.add('lock-scroll');
-                      loginScreen.style.display = 'flex';
-                      backgroundManager.switchToLogin();
-                  })
-                  .to(loginScreen, { opacity: 1, duration: 0.5 })
-                  .fromTo('.login-element', { opacity: 0, y: 30 }, { opacity: 1, y: 0, stagger: 0.1, ease: 'power3.out' });
-            });
-        });
+        document.addEventListener('DOMContentLoaded', () => App.init());
     </script>
 </body>
 </html>
